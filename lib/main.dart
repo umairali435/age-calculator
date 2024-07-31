@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Age & Birthday Calculator',
+      title: 'Age & Birthday Measure',
       builder: (context, child) => ResponsiveBreakpoints.builder(
         breakpoints: [
           const Breakpoint(start: 0, end: 450, name: MOBILE),
