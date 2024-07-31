@@ -62,7 +62,6 @@ class UpdateTimeProvider extends ChangeNotifier {
           minutes = timeLeft['minutes']!;
           seconds = timeLeft['seconds']!;
         } else {
-          print("borda");
           Map<String, int> timeLeft = ComparisonDateLogic.calculateTimeDifference(difference);
           days = timeLeft['days']!;
           hours = timeLeft['hours']!;

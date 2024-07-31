@@ -100,7 +100,6 @@ class Calender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("rebuilding");
     return CalendarDatePicker2(
       config: CalendarDatePicker2Config(
         firstDate: DateTime(1970),
@@ -202,12 +201,6 @@ class FutureTile extends StatefulWidget {
 }
 
 class _FutureTileState extends State<FutureTile> {
-  @override
-  void initState() {
-    print(widget.initialDateTime);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     Provider.of<UpdateTimeProvider>(context).updateTime(context);
