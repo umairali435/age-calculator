@@ -2,6 +2,7 @@ import 'package:agecalculate/constants/colors.dart';
 import 'package:agecalculate/logics/comparison_date_logic.dart';
 import 'package:agecalculate/provider/update_inital_time_provider.dart';
 import 'package:agecalculate/provider/update_time_provider.dart';
+import 'package:agecalculate/screens/custom_drawer.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,9 +32,11 @@ class _AgeAndBirthdayCalculatorState extends State<AgeAndBirthdayCalculator> {
   Widget build(BuildContext context) {
     final dateProvider = Provider.of<UpdateInitialDateTimeProvider>(context);
     return Scaffold(
+      drawer: const CustomDrawer(),
       backgroundColor: const Color(0xFFF2F1EB),
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
+        iconTheme: const IconThemeData(color: AppColors.whiteColor),
         title: const Text(
           "Age & Birthday Calculator",
           style: TextStyle(
@@ -64,13 +67,9 @@ class _AgeAndBirthdayCalculatorState extends State<AgeAndBirthdayCalculator> {
               DateTime.now(),
             ),
           ),
-          Row(
-            children: [
-              FutureTile(
-                title: "Next",
-                initialDateTime: dateProvider.initialDate,
-              ),
-            ],
+          FutureTile(
+            title: "Next",
+            initialDateTime: dateProvider.initialDate,
           ),
           Container(
             margin: const EdgeInsets.all(8.0),
@@ -206,87 +205,94 @@ class _FutureTileState extends State<FutureTile> {
     Provider.of<UpdateTimeProvider>(context).updateTime(context);
     return Consumer<UpdateTimeProvider>(
       builder: (context, value, child) {
-        return Expanded(
-          child: Column(
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
             children: [
-              Container(
-                color: AppColors.primaryColor,
-                padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              Expanded(
+                child: Column(
                   children: [
-                    Text(
-                      widget.title,
-                      style: const TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 18.0,
+                    Container(
+                      color: AppColors.primaryColor,
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.title,
+                            style: const TextStyle(
+                              color: AppColors.whiteColor,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 12.0),
-                color: AppColors.whiteColor,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      value.days.toString(),
-                      style: GoogleFonts.notoSans(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 28.0,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        ":",
-                        style: GoogleFonts.notoSans(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 28.0,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      value.hours.toString(),
-                      style: GoogleFonts.notoSans(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 28.0,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        ":",
-                        style: GoogleFonts.notoSans(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 28.0,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      value.minutes.toString(),
-                      style: GoogleFonts.notoSans(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 28.0,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        ":",
-                        style: GoogleFonts.notoSans(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 28.0,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      value.seconds.toString(),
-                      style: GoogleFonts.notoSans(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 28.0,
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      color: AppColors.whiteColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            value.days.toString(),
+                            style: GoogleFonts.notoSans(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 28.0,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              ":",
+                              style: GoogleFonts.notoSans(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 28.0,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            value.hours.toString(),
+                            style: GoogleFonts.notoSans(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 28.0,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              ":",
+                              style: GoogleFonts.notoSans(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 28.0,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            value.minutes.toString(),
+                            style: GoogleFonts.notoSans(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 28.0,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              ":",
+                              style: GoogleFonts.notoSans(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 28.0,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            value.seconds.toString(),
+                            style: GoogleFonts.notoSans(
+                              fontWeight: FontWeight.w800,
+                              fontSize: 28.0,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
